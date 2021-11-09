@@ -7,3 +7,5 @@ http.createServer((request, response) => {
   response.write("Hello!")
   response.end()
 }).listen(8080) // 127.0.0.1:8080 可以找到被建立的 http
+
+// port 21 -> FTP / 80 -> http / 3389 -> 遠端桌面
