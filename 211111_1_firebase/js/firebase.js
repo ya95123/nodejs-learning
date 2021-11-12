@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js"
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-analytics.js"
-import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-database.js"
+import { getDatabase, ref, set, get, push, child, onValue, update, remove } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-database.js"
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -29,7 +29,7 @@ console.log(analytics)
 console.log(db)
 
 // *ref() 尋找資料庫路徑
-// *set() 新增資料
+// *set() 新增資料 (會直接覆蓋)
 // *firebase 全部物件格式，不能陣列內容
 
 // *寫入資料
@@ -55,11 +55,32 @@ console.log(db)
 const student001 = ref(db, "student001")
 // js 調用值時用 val()
 onValue(student001, (snapshot) => {
+  const name = document.getElementById("name")
+  name.innerText = snapshot.val().username
   console.log(snapshot.val())
 })
-// * get()，讀取數據一次，詳情看文檔
+// * get()，讀取數據一次
 get(student001).then(snapshot => {
-  console.log(snapshot.val())
+  console.log(snapshot.val().country)
 }).catch(err => {
   console.log(err)
 })
+
+// *新增 push() 會使新增進去的父層增加一個 key
+// push(student001, { "todos": "打掃" }).key
+
+// *更新 update()，只會動到有更新的部分！也可以透過 null 刪除資料
+// const student001Data = {
+//   "username": "Alfred",
+//   "age": 27,
+//   "sex": "male",
+//   "country": "Taiwan",
+//   "-MoHvXY2xnPE38LHRAZ4": null
+// }
+// update(student001, student001Data)
+
+// *刪除 remove()
+// *child 可以指定路徑下的下一層特定位置
+// remove(ref(db, "student001/-MoHrRNitgeqKo8uWdnp"))
+// remove(child(student001, "-MoHw6JJMnb4g6V1cxas"))
+
