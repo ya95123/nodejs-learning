@@ -62,6 +62,11 @@ onValue(student001, (snapshot) => {
 // * get()，讀取數據一次
 get(student001).then(snapshot => {
   console.log(snapshot.val().country)
+
+  // *印出 db 資料
+  const preJson = document.getElementById("preJson")
+  // null 空格, 數字為空格數量
+  preJson.innerText = JSON.stringify(snapshot.val(), null, 3)
 }).catch(err => {
   console.log(err)
 })
@@ -83,4 +88,3 @@ get(student001).then(snapshot => {
 // *child 可以指定路徑下的下一層特定位置
 // remove(ref(db, "student001/-MoHrRNitgeqKo8uWdnp"))
 // remove(child(student001, "-MoHw6JJMnb4g6V1cxas"))
-
