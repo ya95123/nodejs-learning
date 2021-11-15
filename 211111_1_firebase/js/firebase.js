@@ -128,7 +128,7 @@ console.log(db)
 // *order 資料排序
 const class1Ref = ref(db, "class1")
 // *設定可變化排序
-const class1RefOrder = query(class1Ref, orderByChild("num"), limitToLast(3))
+const class1RefOrder = query(class1Ref, orderByChild("num"), limitToLast(7))
 console.log(class1RefOrder)
 // *onValue 讀寫搭配 firebase 的 forEach 自動排序
 onValue(class1RefOrder, (snapshot) => {
