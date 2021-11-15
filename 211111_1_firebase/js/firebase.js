@@ -125,7 +125,7 @@ console.log(db)
 // }
 // update(ref(db), class1)
 
-// *orderByChild()
+// *order 資料排序
 const class1Ref = ref(db, "class1")
 // *設定可變化排序
 const class1RefOrder = query(class1Ref, orderByChild("num"), limitToLast(3))
